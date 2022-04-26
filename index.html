@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>SIATA Info</title>
+
+    <!-- Icons font CSS-->
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="css/main.css" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">¿Cuál es la calidad del aire?</h2>
+                    <form action = "http://54.235.25.26/send_data" method = "post">
+                        <div id="geo1">
+                            <button class="btn btn--radius-2 btn--blue"type="reset" onclick="geoloc()">Ver geolocalización.</button><br/>
+                            <div id="demo"></div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Nombre</label>
+                                    <input class="input--style-4" type="text" name="first_name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label"for="age">Edad</label>
+                                    <input class="input--style-4" type="text" id="age" name="user_age">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label" for="lat">Latitud</label>
+                                    <input class="input--style-4" type="text" id="lat" name="user_lat" value="">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label"for="lon">Longitud</label>
+                                    <input class="input--style-4" type="text" id="lon" name="user_lon" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Enviar Información</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/datepicker/moment.min.js"></script>
+    <script src="vendor/datepicker/daterangepicker.js"></script>
+    <!-- Script para mostrar las coordenadas-->
+		<script type="text/javascript">
+            function geoloc() {
+                d = document.getElementById("demo");
+                if (navigator.geolocation) {
+                    d.innerHTML = "<p>Tu dispositivo soporta la geolocalización.</p>";
+                    navigator.geolocation.getCurrentPosition(showPosition, showError);
+                }
+                else {
+                    d.innerHTML = "<p>Lo sentimos, tu dispositivo no admite la geolocaización.</p>";
+                }
+            }
+            function showPosition(position) {
+                latitud = position.coords.latitude;
+                longitud = position.coords.longitude;
+                d.innerHTML += "<p>Latitud: " + latitud + "</p>";
+                d.innerHTML += "<p>Longitud: " + longitud + "</p>";
+            }
+            function showError(error) {
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        d.innerHTML += "<p>El usuario ha denegado el permiso a la localización.</p>"
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        d.innerHTML += "<p>La información de la localización no está disponible.</p>"
+                        break;
+                    case error.TIMEOUT:
+                        d.innerHTML += "<p>El tiempo de espera para buscar la localización ha expirado.</p>"
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        d.innerHTML += "<p>Ha ocurrido un error desconocido.</p>"
+                        break;
+                }
+            } 		
+        </script>
+    <!-- Main JS-->
+    <script src="js/global.js"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->
